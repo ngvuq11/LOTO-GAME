@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 function Home(props) {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/*" element={<HomePage />} />
     </Routes>
   );
 }

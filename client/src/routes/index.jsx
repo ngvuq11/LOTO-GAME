@@ -10,7 +10,7 @@ function Routers(props) {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<Home />} />
       </Route>
     </Routes>
   );

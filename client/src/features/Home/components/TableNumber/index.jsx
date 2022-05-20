@@ -1,32 +1,52 @@
-import { AspectRatio, Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Grid } from "@chakra-ui/react";
 import React from "react";
+import NumberBox from "../NumberBox";
 
-TableNumber.propTypes = {};
+// TableNumber.propTypes = {};
 
-function TableNumber(props) {
+const TableNumber = ({
+  handleGetNumber,
+  numberArray,
+  lotoRecord,
+  numberCardDisabled,
+}) => {
   const arrNumber = [];
   for (let number = 1; number < 100; number++) {
     arrNumber.push(number);
   }
+  const onClickGetNumber = () => {
+    handleGetNumber();
+  };
+
   return (
-    <Grid
-      templateColumns="repeat(10, 1fr)"
-      gap={2}
-      p={10}
-      border="1px solid #eee"
-      mb={10}
-    >
-      {arrNumber.map((number, index) => (
-        <GridItem key={index} colSpan={1}>
-          <AspectRatio ratio={1}>
-            <Box bg="gray.200" borderRadius="100rem" cursor="pointer">
-              {number}
-            </Box>
-          </AspectRatio>
-        </GridItem>
-      ))}
-    </Grid>
+    <Box>
+      <Grid
+        templateColumns="repeat(11, 1fr)"
+        gap={2}
+        p={10}
+        border="1px solid #eee"
+      >
+        {arrNumber.map((number) => (
+          <NumberBox
+            number={number}
+            key={number}
+            active={lotoRecord.some((i) => i === number) ? true : false}
+            lastRecord={lotoRecord[lotoRecord.length - 1] === number}
+          />
+        ))}
+      </Grid>
+      <Button
+        colorScheme="teal"
+        size="lg"
+        w="100%"
+        variant="solid"
+        onClick={onClickGetNumber}
+        disabled={numberCardDisabled}
+      >
+        Get Number
+      </Button>
+    </Box>
   );
-}
+};
 
 export default TableNumber;
